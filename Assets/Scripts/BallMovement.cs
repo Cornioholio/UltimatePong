@@ -1,33 +1,34 @@
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BallMovement : MonoBehaviour
+public class BallMovement : NetworkBehaviour
 {
     Rigidbody2D RigidB2D;
     private float ballSpeed = 10.0f;
-    void Start()
+
+    public override void OnNetworkSpawn()
     {
         RigidB2D = GetComponent<Rigidbody2D>();
+
+        RigidB2D.simulated = true;
         RigidB2D.bodyType = RigidbodyType2D.Dynamic;
         RigidB2D.angularDamping = 0;
         RigidB2D.gravityScale = 0;
-
-        LaunchBall();
     }
-
-    void Update()
-    {
-        
-    }
-
     void LaunchBall() 
     {
         RigidB2D.AddForce(new Vector2(-ballSpeed, 0), ForceMode2D.Impulse);
     }
-
+    public void ResetBall()
+    {
+        transform.position = Vector2.zero;
+        RigidB2D.linearVelocity = Vector2.zero;
+        LaunchBall();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Paddle")) 
+        if (collision.gameObject.CompareTag("Paddle"))
         {
             float paddleY = collision.transform.position.y;
             float ballY = transform.position.y;
@@ -40,12 +41,6 @@ public class BallMovement : MonoBehaviour
 
             RigidB2D.linearVelocity = newDirection * ballSpeed;
         }
-        
-    }
-    public void ResetBall() 
-    {
-        transform.position = Vector2.zero;
-        RigidB2D.linearVelocity = Vector2.zero;
-        RigidB2D.AddForce(new Vector2(-ballSpeed, 0), ForceMode2D.Impulse);
+
     }
 }

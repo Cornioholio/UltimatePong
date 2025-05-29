@@ -1,16 +1,24 @@
 using System;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PaddleMovement : MonoBehaviour
+public class PaddleMovement : NetworkBehaviour
 {
     Rigidbody2D RigidB2D;
-    void Start()
+    private void Initialize()
     {
         RigidB2D = GetComponent<Rigidbody2D>();
         RigidB2D.bodyType = RigidbodyType2D.Static;
     }
+    public override void OnNetworkSpawn() 
+    {
+        base.OnNetworkSpawn();
+        Initialize();
+    }
     void Update()
     {
+        if (!Application.isFocused) return;
+
         Movement(Input.GetAxis("Vertical"));
 
         var pos = transform.position;

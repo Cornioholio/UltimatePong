@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class GoalTrigger : MonoBehaviour
+public class ScoreGoal :  NetworkBehaviour
 {
     public GameManager gameManager;
 

@@ -994,14 +994,13 @@ MonoBehaviour:
     m_InternalValue: 0
   rightPlayerScore:
     m_InternalValue: 0
-  ballMovement: {fileID: 8392363504178312958, guid: e8c1a6a892d6c764fb2c2dc6ce4a29c9, type: 3}
   ballPrefab: {fileID: 4265047750294880682, guid: e8c1a6a892d6c764fb2c2dc6ce4a29c9, type: 3}
-  leftGoal: {fileID: 661579258}
-  rightGoal: {fileID: 1728157651}
+  ballSpawn: {fileID: 1816019473}
   paddlePrefab: {fileID: 4174471207271060489, guid: 708b822424c136b4f9750e578337be80, type: 3}
   leftSpawn: {fileID: 1543532258}
   rightSpawn: {fileID: 1522968694}
-  ballSpawn: {fileID: 1816019473}
+  leftGoal: {fileID: 661579258}
+  rightGoal: {fileID: 1728157651}
 --- !u!114 &920752864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1982,7 +1981,7 @@ MonoBehaviour:
     PlayerPrefab: {fileID: 0}
     Prefabs:
       NetworkPrefabsLists:
-      - {fileID: 11400000, guid: efd5e02a5d0f85d4d87ae17599ae46dc, type: 2}
+      - {fileID: 11400000, guid: 2232818cdfeb4bb439b75b60f76b3d1e, type: 2}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
